@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+  caddy:
+    image: caddy:alpine
+    container_name: bpsarc-caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      - DOMAIN=${DOMAIN:-xiric.duckdns.org}
+    depends_on:
+      - app
+    restart: unless-stopped
+    networks:
+      - bpsarc-network
+
+  app:
+    image: ghcr.io/${GITHUB_USER:-yourusername}/bpsarc_simple:latest
+    container_name: bpsarc-app
+    expose:
+      - "3000"
+    volumes:
+      - ./data:/app/data
+      - ./images:/app/images:ro
+      - ./blueprints.json:/app/blueprints.json:ro
+      - ./static:/app/static:ro
+    environment:
+      - NODE_ENV=production
+      - JWT_SECRET=${JWT_SECRET}
+      - PORT=3000
+    restart: unless-stopped
+    networks:
+      - bpsarc-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (r) => {if(r.statusCode !== 200) throw new Error()})"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  bpsarc-network:
+    driver: bridge

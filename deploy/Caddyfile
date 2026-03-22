@@ -1,0 +1,72 @@
+# Caddyfile for Blueprint Inventory
+# Uses environment variable DOMAIN (e.g., xiric.duckdns.org)
+
+{$DOMAIN} {
+    # Logging
+    log {
+        output stdout
+        format json
+    }
+    
+    # Security headers
+    header {
+        # Enable HSTS
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        # Prevent clickjacking
+        X-Frame-Options "DENY"
+        # Prevent MIME type sniffing
+        X-Content-Type-Options "nosniff"
+        # Basic XSS protection
+        X-XSS-Protection "1; mode=block"
+        # Referrer policy
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+    
+    # Handle ACME HTTP challenge
+    @acme {
+        path /.well-known/acme-challenge/*
+    }
+    handle @acme {
+        reverse_proxy app:3000
+    }
+    
+    # Reverse proxy to the app
+    reverse_proxy app:3000 {
+        # Health check
+        health_uri /api/health
+        health_interval 30s
+        health_timeout 5s
+        
+        # Load balancing (if multiple instances in future)
+        lb_policy first
+        
+        # Headers to preserve
+        header_up X-Real-IP {remote_host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+    }
+    
+    # Compression
+    encode gzip zstd
+    
+    # Rate limiting (optional)
+    # @login {
+    #     path /api/auth/login
+    #     method POST
+    # }
+    # handle @login {
+    #     rate_limit {
+    #         zone login {
+    #             key {remote_host}
+    #             events 5
+    #             window 1m
+    #         }
+    #     }
+    #     reverse_proxy app:3000
+    # }
+}
+
+# Redirect HTTP to HTTPS
+:80 {
+    redir https://{$DOMAIN}{uri} permanent
+}

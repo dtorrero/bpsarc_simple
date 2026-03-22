@@ -1,0 +1,742 @@
+[
+  {
+    "name": "Anvil",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Raider Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Anvil-Level1.png.webp"
+  },
+  {
+    "name": "Angled Grip II",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Angled_Grip_II.png.webp"
+  },
+  {
+    "name": "Angled Grip III",
+    "map": "All",
+    "condition": "Electromagnetic Storm, Locked Gate, Night Raid",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Angled_Grip_III.png.webp"
+  },
+  {
+    "name": "Aphelion",
+    "map": "Stella Montis",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Anywhere",
+    "quest_reward": "No",
+    "trials_reward": "No",
+    "image_filename": "256px-Aphelion.png.webp"
+  },
+  {
+    "name": "Barricade Kit",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Electrical Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Barricade_Kit.png.webp"
+  },
+  {
+    "name": "Bettina",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Raider Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Bettina.png.webp"
+  },
+  {
+    "name": "Blaze Grenade",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Industrial Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Blaze_Grenade.png.webp"
+  },
+  {
+    "name": "Bobcat",
+    "map": "Condition Only",
+    "condition": "Locked Gate, Hurricane",
+    "scavengable": "Yes",
+    "containers": "Anywhere, First Wave Cache",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Bobcat-Level1.png.webp"
+  },
+  {
+    "name": "Burletta",
+    "map": "N/A",
+    "condition": "N/A",
+    "scavengable": "No",
+    "containers": "N/A",
+    "quest_reward": "Yes, Industrial Espionage",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Burletta-Level1.png.webp"
+  },
+  {
+    "name": "Combat Mk. 3 (Aggressive)",
+    "map": "Stella MontisThe Blue Gate",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Medical Containers, Security Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Combat_Mk._3Aggressive.png.webp"
+  },
+  {
+    "name": "Combat Mk. 3 (Flanking)",
+    "map": "Stella MontisThe Blue Gate",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Medical Containers, Security Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Combat_Mk._3Flankingpng.webp"
+  },
+  {
+    "name": "Compensator II",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Compensator_II.png.webp"
+  },
+  {
+    "name": "Compensator III",
+    "map": "Condition Only",
+    "condition": "Electromagnetic Storm, Locked Gate, Night Raid",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Compensator_III.png.webp"
+  },
+  {
+    "name": "Complex Gun Parts",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Security Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Complex_Gun_Parts.png.webp"
+  },
+  {
+    "name": "Deadline",
+    "map": "Stella Montis",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Anywhere",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Deadline.png.webp"
+  },
+  {
+    "name": "Defibrillator",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Medical Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Defibrillator.png.webp"
+  },
+  {
+    "name": "Explosive Mine",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Industrial Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Explosive_Mine.png.webp"
+  },
+  {
+    "name": "Extended Barrel",
+    "map": "Condition Only",
+    "condition": "Electromagnetic Storm, Locked Gate, Night Raid",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Extended_Barrel.png.webp"
+  },
+  {
+    "name": "Extended Light Magazine II",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Extended_Light_Mag_II.png.webp"
+  },
+  {
+    "name": "Extended Light Magazine III",
+    "map": "Condition Only",
+    "condition": "Electromagnetic Storm, Locked Gate, Night Raid",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Extended_Light_Mag_III.png.webp"
+  },
+  {
+    "name": "Extended Medium Magazine II",
+    "map": "All",
+    "condition": "Night Raid",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Extended_Medium_Mag_II.png.webp"
+  },
+  {
+    "name": "Extended Medium Magazine III",
+    "map": "Condition Only",
+    "condition": "Electromagnetic Storm, Locked Gate, Night Raid",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Extended_Medium_Mag_III.png.webp"
+  },
+  {
+    "name": "Extended Shotgun Magazine II",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Extended_Shotgun_Mag_II.png.webp"
+  },
+  {
+    "name": "Extended Shotgun Magazine III",
+    "map": "Condition Only",
+    "condition": "Electromagnetic Storm, Locked Gate, Night Raid",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Extended_Shotgun_Mag_III.png.webp"
+  },
+  {
+    "name": "Equalizer",
+    "map": "Condition Only",
+    "condition": "Harvester",
+    "scavengable": "No",
+    "containers": "Harvester",
+    "quest_reward": "No",
+    "trials_reward": "No",
+    "image_filename": "256px-Equalizer.png.webp"
+  },
+  {
+    "name": "Fireworks Box",
+    "map": "Condition Only",
+    "condition": "Cold Snap",
+    "scavengable": "Yes",
+    "containers": "Anywhere",
+    "quest_reward": "No",
+    "trials_reward": "?",
+    "image_filename": "256px-Fireworks_Box.png.webp"
+  },
+  {
+    "name": "Gas Mine",
+    "map": "Stella Montis",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Anywhere",
+    "quest_reward": "No",
+    "trials_reward": "?",
+    "image_filename": "256px-Gas_Mine.png.webp"
+  },
+  {
+    "name": "Heavy Gun Parts",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Raider Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Heavy_Gun_Parts.png.webp"
+  },
+  {
+    "name": "Hullcracker",
+    "map": "N/A",
+    "condition": "N/A",
+    "scavengable": "No",
+    "containers": "N/A",
+    "quest_reward": "Yes, The Major's Footlocker",
+    "trials_reward": "No",
+    "image_filename": "256px-Hullcracker-Level1.png.webp"
+  },
+  {
+    "name": "Il Toro",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Raider Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Il_Toro-Level1.png.webp"
+  },
+  {
+    "name": "Jolt Mine",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Industrial Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Jolt_Mine.png.webp"
+  },
+  {
+    "name": "Jupiter",
+    "map": "Condition Only",
+    "condition": "Harvester",
+    "scavengable": "No",
+    "containers": "Harvester",
+    "quest_reward": "No",
+    "trials_reward": "No",
+    "image_filename": "256px-Jupiter.png.webp"
+  },
+  {
+    "name": "Light Gun Parts",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Raider Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Light_Gun_Parts.png.webp"
+  },
+  {
+    "name": "Red Light Stick",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Anywhere",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Red_Light_Stick.png.webp"
+  },
+  {
+    "name": "Green Light Stick",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Anywhere",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Green_Light_Stick.png.webp"
+  },
+  {
+    "name": "Yellow Light Stick",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Anywhere",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Yellow_Light_Stick.png.webp"
+  },
+  {
+    "name": "Blue Light Stick",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Anywhere",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Blue_Light_Stick.png.webp"
+  },
+  {
+    "name": "Lightweight Stock",
+    "map": "Condition Only",
+    "condition": "Electromagnetic Storm, Locked Gate, Night Raid",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Lightweight_Stock.png.webp"
+  },
+  {
+    "name": "Looting Mk. 3 (Safekeeper)",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Medical Containers, Security Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Looting_Mk._3Safekeeper.png.webp"
+  },
+  {
+    "name": "Looting Mk. 3 (Survivor)",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Medical Containers, Security Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Looting_Mk._3Survivor.png.webp"
+  },
+  {
+    "name": "Lure Grenade",
+    "map": "N/A",
+    "condition": "N/A",
+    "scavengable": "No",
+    "containers": "N/A",
+    "quest_reward": "Yes, Greasing Her Palms",
+    "trials_reward": "No",
+    "image_filename": "256px-Lure_Grenade.png.webp"
+  },
+  {
+    "name": "Medium Gun Parts",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Raider Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Medium_Gun_Parts.png.webp"
+  },
+  {
+    "name": "Muzzle Brake II",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Muzzle_Brake_II.png.webp"
+  },
+  {
+    "name": "Muzzle Brake III",
+    "map": "Condition Only",
+    "condition": "Electromagnetic Storm, Locked Gate, Night Raid",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Muzzle_Brake_III.png.webp"
+  },
+  {
+    "name": "Osprey",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Raider Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Osprey-Level1.png.webp"
+  },
+  {
+    "name": "Padded Stock",
+    "map": "Condition Only",
+    "condition": "Electromagnetic Storm, Locked Gate, Night Raid",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Padded_Stock.png.webp"
+  },
+  {
+    "name": "Pulse Mine",
+    "map": "Stella Montis",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Anywhere",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Pulse_Mine.png.webp"
+  },
+  {
+    "name": "Remote Raider Flare",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Electrical Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Remote_Raider_Flare.png.webp"
+  },
+  {
+    "name": "Seeker Grenade",
+    "map": "Stella Montis",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Anywhere",
+    "quest_reward": "No",
+    "trials_reward": "?",
+    "image_filename": "256px-Seeker_Grenade.png.webp"
+  },
+  {
+    "name": "Shotgun Choke II",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Shotgun_Choke_II.png.webp"
+  },
+  {
+    "name": "Shotgun Choke III",
+    "map": "Condition Only",
+    "condition": "Electromagnetic Storm, Locked Gate, Night Raid",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Shotgun_Choke_III.png.webp"
+  },
+  {
+    "name": "Shotgun Silencer",
+    "map": "Condition Only",
+    "condition": "Electromagnetic Storm, Locked Gate, Night RaidHidden Bunker",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Shotgun_Silencer.png.webp"
+  },
+  {
+    "name": "Showstopper",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Industrial Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Showstopper.png.webp"
+  },
+  {
+    "name": "Silencer I",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Silencer_I.png.webp"
+  },
+  {
+    "name": "Silencer II",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Silencer_II.png.webp"
+  },
+  {
+    "name": "Smoke Grenade",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Any",
+    "image_filename": "256px-Smoke_Grenade.png.webp"
+  },
+  {
+    "name": "Snap Hook",
+    "map": "Condition Only",
+    "condition": "Electromagnetic Storm",
+    "scavengable": "Yes",
+    "containers": "Anywhere",
+    "quest_reward": "No",
+    "trials_reward": "No",
+    "image_filename": "Snap_Hook.png"
+  },
+  {
+    "name": "Stable Stock II",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Stable_Stock_II.png.webp"
+  },
+  {
+    "name": "Stable Stock III",
+    "map": "Condition Only",
+    "condition": "Electromagnetic Storm, Locked Gate, Night Raid",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Stable_Stock_III.png.webp"
+  },
+  {
+    "name": "Tactical Mk. 3 (Defensive)",
+    "map": "Stella MontisThe Blue Gate",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Medical Containers, Security Containers, ARC Surveyor",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Tactical_Mk._3Defensive.png.webp"
+  },
+  {
+    "name": "Tactical Mk. 3 (Healing)",
+    "map": "Stella MontisThe Blue Gate",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Medical Containers, Security Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Tactical_Mk._3Healing.png.webp"
+  },
+  {
+    "name": "Tactical Mk. 3 (Revival)",
+    "map": "Stella MontisThe Blue Gate",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Medical Containers, Security Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Tactical_Mk._3Revival.png.webp"
+  },
+  {
+    "name": "Tagging Grenade",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Electrical Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "Tagging_Grenade.png"
+  },
+  {
+    "name": "Tempest",
+    "map": "Condition Only",
+    "condition": "Night Raid\nHurricane",
+    "scavengable": "Yes",
+    "containers": "Residential Containers, First Wave Cache",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Tempest-Level1.png.webp"
+  },
+  {
+    "name": "Torrente",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Raider Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Torrente-Level1.png.webp"
+  },
+  {
+    "name": "Trailblazer",
+    "map": "Stella Montis",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Anywhere",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Trailblazer.png.webp"
+  },
+  {
+    "name": "Trigger 'Nade",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Anywhere",
+    "quest_reward": "Yes, Sparks Fly",
+    "trials_reward": "?",
+    "image_filename": "256px-Trigger_Nade.png.webp"
+  },
+  {
+    "name": "Venator",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Raider Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Venator-Level1.png.webp"
+  },
+  {
+    "name": "Vertical Grip II",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Vertical_Grip_II.png.webp"
+  },
+  {
+    "name": "Vertical Grip III",
+    "map": "Condition Only",
+    "condition": "Electromagnetic Storm, Locked Gate, Night Raid",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Vertical_Grip_III.png.webp"
+  },
+  {
+    "name": "Vita Shot",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Medical Containers, ARC Surveyor",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Vita_Shot.png.webp"
+  },
+  {
+    "name": "Vita Spray",
+    "map": "All",
+    "condition": "Any",
+    "scavengable": "Yes",
+    "containers": "Medical Containers, ARC Surveyor",
+    "quest_reward": "Yes, Worth Your Salt",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Vita_Spray.png.webp"
+  },
+  {
+    "name": "Vulcano",
+    "map": "Condition Only",
+    "condition": "Hidden Bunker\nHurricane",
+    "scavengable": "Yes",
+    "containers": "Anywhere, First Wave Cache",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Vulcano-Level1.png.webp"
+  },
+  {
+    "name": "Wolfpack",
+    "map": "Condition Only",
+    "condition": "Night Raid",
+    "scavengable": "Yes",
+    "containers": "Residential Containers",
+    "quest_reward": "No",
+    "trials_reward": "Yes",
+    "image_filename": "256px-Wolfpack.png.webp"
+  }
+]

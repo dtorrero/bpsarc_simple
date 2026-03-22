@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueprint Inventory - Admin</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="header-left">
+                <h1>Blueprint Inventory - Admin</h1>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span id="usernameDisplay">Loading...</span>
+                    <span class="user-badge admin-badge">Admin</span>
+                </div>
+                <button class="btn btn-secondary" id="backBtn">Back to App</button>
+                <button class="btn btn-danger" id="logoutBtn">Logout</button>
+            </div>
+        </header>
+        
+        <main class="admin-container">
+            <!-- User Management Section -->
+            <div class="admin-section">
+                <h2>User Management</h2>
+                
+                <!-- Add User Form -->
+                <div class="user-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="newUsername">Username</label>
+                            <input type="text" id="newUsername" placeholder="Enter username">
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">Password</label>
+                            <input type="password" id="newPassword" placeholder="Enter password">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="newUserIsAdmin">
+                            <label for="newUserIsAdmin">Admin User</label>
+                        </div>
+                        <button class="btn btn-primary" id="addUserBtn">Add User</button>
+                    </div>
+                    <div id="addUserError" class="error-message hidden"></div>
+                    <div id="addUserSuccess" class="success-message hidden"></div>
+                </div>
+                
+                <!-- Users Table -->
+                <div id="usersTableContainer">
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                        <p>Loading users...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Change Password Section -->
+            <div class="admin-section">
+                <h2>Change Password</h2>
+                <div class="user-form">
+                    <div class="form-group">
+                        <label for="currentPassword">Current Password</label>
+                        <input type="password" id="currentPassword" placeholder="Enter current password">
+                    </div>
+                    <div class="form-group">
+                        <label for="newPasswordAdmin">New Password</label>
+                        <input type="password" id="newPasswordAdmin" placeholder="Enter new password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm New Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Confirm new password">
+                    </div>
+                    <button class="btn btn-primary" id="changePasswordBtn">Change Password</button>
+                    <div id="changePasswordError" class="error-message hidden"></div>
+                    <div id="changePasswordSuccess" class="success-message hidden"></div>
+                </div>
+            </div>
+            
+            <!-- System Info Section -->
+            <div class="admin-section">
+                <h2>System Information</h2>
+                <div id="systemInfo">
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                        <p>Loading system info...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/admin.js"></script>
+</body>
+</html>
