@@ -55,3 +55,6 @@ coverage/
 # Temporary folders
 tmp/
 temp/
+
+# Local deployment files (user-specific configurations)
+DEPLOY.md

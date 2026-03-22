@@ -1,58 +1,102 @@
+# Single Unified Docker/Podman Compose for Blueprint Inventory
+# Works with both Docker Compose and Podman Compose on ARM/x86
+# Copy ONLY this file to your ARM machine and edit the 3 variables below
+
 version: '3.8'
 services:
+  # Blueprint Inventory Application
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      platforms:
-        - linux/amd64
-        - linux/arm64
+    # Pre-built multi-architecture image from GitHub Container Registry
+    # Supports ARM (Raspberry Pi) and x86 - automatically selects correct architecture
+    image: ghcr.io/dtorrero/bpsarc_simple:latest
     container_name: bpsarc-app
-    # Don't expose port 3000 to host - only to internal network
-    # Caddy will handle external traffic
+    
+    # Internal port only - Caddy handles external traffic
     expose:
       - "3000"
+    
+    # Persistent data storage (creates ./data directory automatically)
     volumes:
       - ./data:/app/data
+    
+    # === EDIT THESE 3 VARIABLES ===
     environment:
       - NODE_ENV=production
-      - JWT_SECRET=${JWT_SECRET:-your-jwt-secret-change-this}
+      # 1. Generate with: openssl rand -hex 32
+      - JWT_SECRET=your-secure-jwt-secret-change-this
       - PORT=3000
+    # ==============================
+    
     restart: unless-stopped
+    
+    # Health check for Caddy dependency
     healthcheck:
       test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (r) => {if(r.statusCode !== 200) throw new Error()})"]
       interval: 30s
       timeout: 3s
       retries: 3
       start_period: 10s
+    
     networks:
       - bpsarc-network
 
-  # Caddy reverse proxy with automatic HTTPS
+  # Caddy Reverse Proxy with Automatic HTTPS
+  # Caddy configuration is EMBEDDED - no separate Caddyfile needed
   caddy:
     image: caddy:alpine
     container_name: bpsarc-caddy
+    
+    # External ports - open these on your firewall
     ports:
       - "80:80"    # HTTP for ACME challenge and redirect
       - "443:443"  # HTTPS
+    
+    # SSL certificate storage (persistent)
     volumes:
-      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data    # For SSL certificates
-      - caddy_config:/config # For Caddy configuration
+      - caddy_data:/data    # SSL certificates
+      - caddy_config:/config # Caddy configuration
+    
+    # === EDIT THESE 2 VARIABLES ===
     environment:
-      - DOMAIN=${DOMAIN:-localhost}
-      - CADDY_EMAIL=${CADDY_EMAIL:-}
+      # 2. Change to your actual domain (e.g., example.com)
+      #    Use "localhost" for development (self-signed cert)
+      - DOMAIN=localhost
+      # 3. Optional: Your email for Let's Encrypt notifications
+      - CADDY_EMAIL=
+    # ==============================
+    
+    # Embedded Caddy configuration using command
+    # No separate Caddyfile needed - configuration is here
+    # Includes automatic HTTPS with Let's Encrypt and HTTP→HTTPS redirect
+    command: |
+      caddy reverse-proxy \
+        --from ${DOMAIN} \
+        --to app:3000 \
+        --change-host-header \
+        --header-up X-Real-IP {remote_host} \
+        --header-up X-Forwarded-For {remote_host} \
+        --header-up X-Forwarded-Proto {scheme} \
+        --header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" \
+        --header X-Frame-Options "DENY" \
+        --header X-Content-Type-Options "nosniff" \
+        --header X-XSS-Protection "1; mode=block" \
+        --header Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Wait for app to be healthy before starting
     depends_on:
       app:
         condition: service_healthy
+    
     restart: unless-stopped
     networks:
       - bpsarc-network
 
+# Docker/Podman volumes for persistence
 volumes:
   caddy_data:
   caddy_config:
 
+# Internal network for service communication
 networks:
   bpsarc-network:
     driver: bridge
