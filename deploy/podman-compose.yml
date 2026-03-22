@@ -12,6 +12,7 @@ services:
       - caddy_config:/config
     environment:
       - DOMAIN=${DOMAIN:-xiric.duckdns.org}
+      - CADDY_EMAIL=${CADDY_EMAIL:-}
     depends_on:
       - app
     restart: unless-stopped
@@ -25,9 +26,8 @@ services:
       - "3000"
     volumes:
       - ./data:/app/data
-      - ./images:/app/images:ro
-      - ./blueprints.json:/app/blueprints.json:ro
-      - ./static:/app/static:ro
+      # Images and blueprints.json are now included in the Docker image
+      # No need to mount them as volumes
     environment:
       - NODE_ENV=production
       - JWT_SECRET=${JWT_SECRET}

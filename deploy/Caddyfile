@@ -1,7 +1,13 @@
 # Caddyfile for Blueprint Inventory
-# Uses environment variable DOMAIN (e.g., xiric.duckdns.org)
+# Uses environment variables:
+# - DOMAIN (e.g., xiric.duckdns.org)
+# - CADDY_EMAIL (optional, for Let's Encrypt notifications)
 
 {$DOMAIN} {
+    # TLS/SSL configuration
+    tls {
+        {$CADDY_EMAIL}
+    }
     # Logging
     log {
         output stdout

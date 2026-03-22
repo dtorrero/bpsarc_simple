@@ -1,0 +1,58 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      platforms:
+        - linux/amd64
+        - linux/arm64
+    container_name: bpsarc-app
+    # Don't expose port 3000 to host - only to internal network
+    # Caddy will handle external traffic
+    expose:
+      - "3000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - NODE_ENV=production
+      - JWT_SECRET=${JWT_SECRET:-your-jwt-secret-change-this}
+      - PORT=3000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (r) => {if(r.statusCode !== 200) throw new Error()})"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    networks:
+      - bpsarc-network
+
+  # Caddy reverse proxy with automatic HTTPS
+  caddy:
+    image: caddy:alpine
+    container_name: bpsarc-caddy
+    ports:
+      - "80:80"    # HTTP for ACME challenge and redirect
+      - "443:443"  # HTTPS
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data    # For SSL certificates
+      - caddy_config:/config # For Caddy configuration
+    environment:
+      - DOMAIN=${DOMAIN:-localhost}
+      - CADDY_EMAIL=${CADDY_EMAIL:-}
+    depends_on:
+      app:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - bpsarc-network
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  bpsarc-network:
+    driver: bridge
