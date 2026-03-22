@@ -31,7 +31,6 @@
                         <h2 class="panel-title">Blueprint Catalog</h2>
                         <p class="panel-subtitle" id="blueprintCount">Loading...</p>
                     </div>
-                    <button class="btn btn-primary" id="refreshBlueprints">Refresh</button>
                 </div>
                 
                 <!-- Filters -->
@@ -64,7 +63,10 @@
                         <h2 class="panel-title">My Inventory</h2>
                         <p class="panel-subtitle" id="inventoryStats">Loading...</p>
                     </div>
-                    <button class="btn btn-primary" id="refreshInventory">Refresh</button>
+                    <div class="panel-actions">
+                        <button class="btn btn-secondary" id="exportInventory">Export</button>
+                        <button class="btn btn-primary" id="showAllInventory">Show All</button>
+                    </div>
                 </div>
                 
                 <!-- Inventory List -->
@@ -78,6 +80,21 @@
         </main>
     </div>
     
+    <!-- Show All Modal -->
+    <div id="showAllModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>All Blueprints in Inventory</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="showAllGrid" class="show-all-grid">
+                    <!-- Blueprint images will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="/js/api.js"></script>
     <script src="/js/auth.js"></script>

@@ -80,17 +80,40 @@ class BlueprintApp {
             clearFiltersBtn.addEventListener('click', () => this.clearFilters());
         }
         
-        // Refresh buttons
-        const refreshBlueprintsBtn = document.getElementById('refreshBlueprints');
-        const refreshInventoryBtn = document.getElementById('refreshInventory');
-        
-        if (refreshBlueprintsBtn) {
-            refreshBlueprintsBtn.addEventListener('click', () => this.loadBlueprints());
+        // Show All button
+        const showAllBtn = document.getElementById('showAllInventory');
+        if (showAllBtn) {
+            showAllBtn.addEventListener('click', () => this.showAllInventory());
         }
         
-        if (refreshInventoryBtn) {
-            refreshInventoryBtn.addEventListener('click', () => this.loadInventory());
+        // Export button
+        const exportBtn = document.getElementById('exportInventory');
+        if (exportBtn) {
+            exportBtn.addEventListener('click', () => this.exportInventory());
         }
+        
+        // Modal close button
+        const modalClose = document.querySelector('.modal-close');
+        if (modalClose) {
+            modalClose.addEventListener('click', () => this.hideModal());
+        }
+        
+        // Close modal when clicking outside
+        const modal = document.getElementById('showAllModal');
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    this.hideModal();
+                }
+            });
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.hideModal();
+            }
+        });
     }
     
     
@@ -351,6 +374,85 @@ class BlueprintApp {
         if (searchFilter) searchFilter.value = '';
         this.currentSearch = '';
         this.loadBlueprints();
+    }
+    
+    showAllInventory() {
+        const modal = document.getElementById('showAllModal');
+        const grid = document.getElementById('showAllGrid');
+        
+        if (!modal || !grid) return;
+        
+        // Clear previous content
+        grid.innerHTML = '';
+        
+        if (this.inventory.length === 0) {
+            grid.innerHTML = `
+                <div class="empty-state" style="grid-column: 1 / -1;">
+                    <div class="empty-state-icon">📦</div>
+                    <p>Your inventory is empty</p>
+                    <p class="text-muted">Add blueprints from the catalog</p>
+                </div>
+            `;
+        } else {
+            // Create items for each inventory entry
+            this.inventory.forEach(item => {
+                const blueprint = this.blueprints.find(bp => bp.name === item.blueprint_name);
+                const imageUrl = blueprint ? blueprint.imageUrl : '/static/favicon-256x256.png';
+                
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'show-all-item';
+                itemDiv.innerHTML = `
+                    <img src="${imageUrl}" alt="${item.blueprint_name}" class="show-all-image"
+                         onerror="this.src='/static/favicon-256x256.png'">
+                    <div class="show-all-name">${item.blueprint_name}</div>
+                    <div class="show-all-quantity">${item.quantity} owned</div>
+                `;
+                grid.appendChild(itemDiv);
+            });
+        }
+        
+        // Show the modal
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
+    }
+    
+    hideModal() {
+        const modal = document.getElementById('showAllModal');
+        if (modal) {
+            modal.classList.remove('show');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+    }
+    
+    async exportInventory() {
+        try {
+            // Create CSV content
+            let csvContent = "Blueprint Name,Quantity,Last Updated\n";
+            
+            this.inventory.forEach(item => {
+                const blueprint = this.blueprints.find(bp => bp.name === item.blueprint_name);
+                const lastUpdated = new Date(item.updated_at).toLocaleDateString();
+                const escapedName = `"${item.blueprint_name.replace(/"/g, '""')}"`;
+                csvContent += `${escapedName},${item.quantity},${lastUpdated}\n`;
+            });
+            
+            // Create blob and download
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', `blueprint-inventory-${new Date().toISOString().split('T')[0]}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            console.log('Inventory exported successfully');
+            
+        } catch (error) {
+            console.error('Failed to export inventory:', error);
+            alert('Failed to export inventory: ' + error.message);
+        }
     }
 }
 
