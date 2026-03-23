@@ -1,102 +1,94 @@
-# Single Unified Docker/Podman Compose for Blueprint Inventory
-# Works with both Docker Compose and Podman Compose on ARM/x86
-# Copy ONLY this file to your ARM machine and edit the 3 variables below
+# Blueprint Inventory with nginx + Let's Encrypt
+# General template - edit variables below
 
 version: '3.8'
 services:
   # Blueprint Inventory Application
   app:
-    # Pre-built multi-architecture image from GitHub Container Registry
-    # Supports ARM (Raspberry Pi) and x86 - automatically selects correct architecture
+    # Pre-built multi-architecture image from GitHub
     image: ghcr.io/dtorrero/bpsarc_simple:latest
     container_name: bpsarc-app
     
-    # Internal port only - Caddy handles external traffic
+    # Internal port only - nginx handles external traffic
     expose:
       - "3000"
     
-    # Persistent data storage (creates ./data directory automatically)
+    # Persistent data storage
     volumes:
       - ./data:/app/data
     
-    # === EDIT THESE 3 VARIABLES ===
+    # === EDIT THESE VARIABLES ===
     environment:
       - NODE_ENV=production
-      # 1. Generate with: openssl rand -hex 32
+      # Generate with: openssl rand -hex 32
       - JWT_SECRET=your-secure-jwt-secret-change-this
       - PORT=3000
     # ==============================
     
     restart: unless-stopped
-    
-    # Health check for Caddy dependency
-    healthcheck:
-      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (r) => {if(r.statusCode !== 200) throw new Error()})"]
-      interval: 30s
-      timeout: 3s
-      retries: 3
-      start_period: 10s
-    
     networks:
       - bpsarc-network
 
-  # Caddy Reverse Proxy with Automatic HTTPS
-  # Caddy configuration is EMBEDDED - no separate Caddyfile needed
-  caddy:
-    image: caddy:alpine
-    container_name: bpsarc-caddy
+  # nginx Reverse Proxy with SSL
+  nginx:
+    image: nginx:alpine
+    container_name: bpsarc-nginx
     
-    # External ports - open these on your firewall
+    # External ports - must be open for Let's Encrypt
     ports:
-      - "80:80"    # HTTP for ACME challenge and redirect
+      - "80:80"    # HTTP for ACME challenge
       - "443:443"  # HTTPS
     
-    # SSL certificate storage (persistent)
+    # nginx configuration and SSL certificates
     volumes:
-      - caddy_data:/data    # SSL certificates
-      - caddy_config:/config # Caddy configuration
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro           # SSL certificates
+      - ./certbot/www:/var/www/certbot:ro # ACME challenge files
+      - ./certbot/conf:/etc/letsencrypt   # Let's Encrypt config
     
-    # === EDIT THESE 2 VARIABLES ===
-    environment:
-      # 2. Change to your actual domain (e.g., example.com)
-      #    Use "localhost" for development (self-signed cert)
-      - DOMAIN=localhost
-      # 3. Optional: Your email for Let's Encrypt notifications
-      - CADDY_EMAIL=
-    # ==============================
-    
-    # Embedded Caddy configuration using command
-    # No separate Caddyfile needed - configuration is here
-    # Includes automatic HTTPS with Let's Encrypt and HTTP→HTTPS redirect
-    command: |
-      caddy reverse-proxy \
-        --from ${DOMAIN} \
-        --to app:3000 \
-        --change-host-header \
-        --header-up X-Real-IP {remote_host} \
-        --header-up X-Forwarded-For {remote_host} \
-        --header-up X-Forwarded-Proto {scheme} \
-        --header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" \
-        --header X-Frame-Options "DENY" \
-        --header X-Content-Type-Options "nosniff" \
-        --header X-XSS-Protection "1; mode=block" \
-        --header Referrer-Policy "strict-origin-when-cross-origin"
-    
-    # Wait for app to be healthy before starting
     depends_on:
-      app:
-        condition: service_healthy
+      - app
     
     restart: unless-stopped
     networks:
       - bpsarc-network
 
-# Docker/Podman volumes for persistence
-volumes:
-  caddy_data:
-  caddy_config:
+  # certbot for Let's Encrypt certificates
+  certbot:
+    image: certbot/certbot
+    container_name: bpsarc-certbot
+    
+    # SSL certificates storage
+    volumes:
+      - ./certbot/www:/var/www/certbot:rw  # ACME challenge
+      - ./certbot/conf:/etc/letsencrypt:rw # Certificate storage
+    
+    # === EDIT THESE VARIABLES ===
+    # Command to get certificates (run once initially)
+    # Uncomment and run: docker-compose run --rm certbot
+    command: >
+      certonly
+      --webroot
+      --webroot-path=/var/www/certbot
+      --email your-email@example.com  # ← Change this
+      --agree-tos
+      --no-eff-email
+      --force-renewal
+      -d your-domain.com              # ← Change this
+    # ==============================
+    
+    # For auto-renewal (uncomment to enable)
+    # entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    
+    restart: "no"  # Only run when needed
+    networks:
+      - bpsarc-network
 
-# Internal network for service communication
+# Shared volumes
+volumes:
+  # SSL certificates are stored in ./certbot/conf and ./ssl
+
+# Internal network
 networks:
   bpsarc-network:
     driver: bridge

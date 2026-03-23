@@ -1,0 +1,64 @@
+# Docker Compose with nginx (alternative to Caddy)
+# Works on ARM and x86, uses widely available images
+
+version: '3.8'
+services:
+  # Blueprint Inventory Application
+  app:
+    # Pre-built multi-architecture image from GitHub
+    image: ghcr.io/dtorrero/bpsarc_simple:latest
+    container_name: bpsarc-app
+    
+    # Internal port only
+    expose:
+      - "3000"
+    
+    # Persistent data storage
+    volumes:
+      - ./data:/app/data
+    
+    # === EDIT THESE VARIABLES ===
+    environment:
+      - NODE_ENV=production
+      # Generate with: openssl rand -hex 32
+      - JWT_SECRET=your-secure-jwt-secret-change-this
+      - PORT=3000
+    # ==============================
+    
+    restart: unless-stopped
+    networks:
+      - bpsarc-network
+
+  # nginx Reverse Proxy
+  nginx:
+    # Use nginx:alpine (small, widely available)
+    image: nginx:alpine
+    container_name: bpsarc-nginx
+    
+    # External ports
+    ports:
+      - "80:80"
+      - "443:443"
+    
+    # nginx configuration
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl  # For SSL certificates
+    
+    # === EDIT THESE VARIABLES ===
+    environment:
+      # Your domain or server IP
+      - SERVER_NAME=localhost
+    # ==============================
+    
+    depends_on:
+      - app
+    
+    restart: unless-stopped
+    networks:
+      - bpsarc-network
+
+# Internal network
+networks:
+  bpsarc-network:
+    driver: bridge

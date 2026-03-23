@@ -58,3 +58,8 @@ temp/
 
 # Local deployment files (user-specific configurations)
 DEPLOY.md
+docker-compose-xiric.yml
+setup-xiric.sh 
+nginx-xiric.conf
+ssl/
+certbot/

@@ -1,0 +1,33 @@
+# SIMPLEST Docker Compose for Blueprint Inventory
+# Just the app, no reverse proxy
+# Access at http://your-server-ip:3000
+
+version: '3.8'
+services:
+  # Blueprint Inventory Application
+  app:
+    # Pre-built multi-architecture image from GitHub
+    image: ghcr.io/dtorrero/bpsarc_simple:latest
+    container_name: bpsarc-app
+    
+    # Expose port directly
+    ports:
+      - "3000:3000"
+    
+    # Persistent data storage
+    volumes:
+      - ./data:/app/data
+    
+    # === EDIT THESE VARIABLES ===
+    environment:
+      - NODE_ENV=production
+      # Generate with: openssl rand -hex 32
+      - JWT_SECRET=your-secure-jwt-secret-change-this
+      - PORT=3000
+    # ==============================
+    
+    restart: unless-stopped
+    
+    # No health check to keep it simple
+    healthcheck:
+      disable: true
