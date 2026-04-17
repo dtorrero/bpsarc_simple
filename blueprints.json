@@ -738,5 +738,15 @@
     "quest_reward": "No",
     "trials_reward": "Yes",
     "image_filename": "256px-Wolfpack.png.webp"
+  },
+  {
+    "name": "Surge Coil",
+    "map": "Condition Only",
+    "condition": "Electromagnetic Storm",
+    "scavengable": "Yes",
+    "containers": "?",
+    "quest_reward": "No",
+    "trials_reward": "?",
+    "image_filename": "Surge_Coil.png"
   }
 ]
