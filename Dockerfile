@@ -34,6 +34,10 @@ COPY --from=builder --chown=nodejs:nodejs /app /app
 # Create data directory for SQLite
 RUN mkdir -p /app/data && chown nodejs:nodejs /app/data
 
+# ========== SECURITY HARDENING ==========
+# Remove unnecessary packages
+RUN apk del --no-cache apk-tools 2>/dev/null || true
+
 # Switch to non-root user
 USER nodejs
 

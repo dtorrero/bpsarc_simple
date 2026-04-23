@@ -25,6 +25,15 @@ services:
       - PORT=3000
     # ==============================
     
+    # ========== SECURITY: Container Hardening ==========
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp
+    
     restart: unless-stopped
     networks:
       - bpsarc-network

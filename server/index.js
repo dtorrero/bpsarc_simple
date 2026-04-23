@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
 const config = require('./config');
 const db = require('./db/init');
 
@@ -32,8 +33,55 @@ app.use(cors({
 }));
 
 // Body parsing middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '100kb' }));
+app.use(express.urlencoded({ extended: true, limit: '100kb' }));
+
+// ========== SECURITY: Request Validation Middleware ==========
+app.use((req, res, next) => {
+  // Block path traversal in URL
+  if (req.url.includes('..') || 
+      req.url.includes('%2e') || 
+      req.url.includes('./') || 
+      req.url.includes('.\\')) {
+    return res.status(400).json({ error: 'Bad request' });
+  }
+  
+  // Block suspicious patterns in query string
+  if (req.query && req.originalUrl) {
+    const suspicious = ['allow_url_include', 'auto_prepend_file', 'php://', '--', 'union select', 'select from', 'drop table'];
+    const queryLower = req.originalUrl.toLowerCase();
+    for (const pattern of suspicious) {
+      if (queryLower.includes(pattern)) {
+        return res.status(400).json({ error: 'Bad request' });
+      }
+    }
+  }
+  
+  next();
+});
+
+// ========== SECURITY: Rate Limiting ==========
+// General API rate limiter
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: { error: 'Too many requests, please try again later' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Auth endpoint rate limiter (more restrictive)
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // limit each IP to 10 login attempts per windowMs
+  message: { error: 'Too many login attempts, please try again later' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Apply rate limiting to API routes
+app.use('/api/', apiLimiter);
+app.use('/api/auth', authLimiter);
 
 // Serve static files
 app.use('/images', express.static(config.imagesPath));
