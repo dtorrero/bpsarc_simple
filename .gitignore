@@ -63,3 +63,6 @@ setup-xiric.sh
 nginx-xiric.conf
 ssl/
 certbot/
+
+# Test data
+blueprints_new.json

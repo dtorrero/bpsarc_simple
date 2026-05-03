@@ -748,5 +748,65 @@
     "quest_reward": "No",
     "trials_reward": "?",
     "image_filename": "Surge_Coil.png"
+  },
+  {
+    "name": "Canto",
+    "map": "Condition Only",
+    "condition": "Hurricane",
+    "scavengable": "Yes",
+    "containers": "First Wave Cache",
+    "quest_reward": "No",
+    "trials_reward": "?",
+    "image_filename": "256px-Canto-Level1.png.webp"
+  },
+  {
+    "name": "Dolabra",
+    "map": "Condition Only",
+    "condition": "Close Scrutiny",
+    "scavengable": "Yes",
+    "containers": "ARC Assessor",
+    "quest_reward": "No",
+    "trials_reward": "No",
+    "image_filename": "256px-Dolabra-Level1.png.webp"
+  },
+  {
+    "name": "Crash Mat",
+    "map": "",
+    "condition": "",
+    "scavengable": "",
+    "containers": "",
+    "quest_reward": "",
+    "trials_reward": "",
+    "image_filename": "256px-Crash_Mat.png.webp"
+  },
+  {
+    "name": "Tactical Mk. 3 (Smoke)",
+    "map": "",
+    "condition": "",
+    "scavengable": "",
+    "containers": "",
+    "quest_reward": "",
+    "trials_reward": "",
+    "image_filename": "256px-Tactical_Mk._3_Smoke.png.webp"
+  },
+  {
+    "name": "White Flag",
+    "map": "",
+    "condition": "",
+    "scavengable": "",
+    "containers": "",
+    "quest_reward": "",
+    "trials_reward": "",
+    "image_filename": "256px-White_Flag.png.webp"
+  },
+  {
+    "name": "Powered Descender",
+    "map": "",
+    "condition": "",
+    "scavengable": "",
+    "containers": "",
+    "quest_reward": "",
+    "trials_reward": "",
+    "image_filename": "256px-Powered_Descender.png.webp"
   }
 ]
